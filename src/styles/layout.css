@@ -1,0 +1,51 @@
+/* Header + Hero */
+.site-header{
+  position:relative; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px clamp(16px,4vw,48px);
+}
+.logo{font-weight:700; letter-spacing:.06em}
+.main-nav a{margin-left:48px}
+.main-nav a:hover{text-decoration:underline}
+
+.hero{position:relative; min-height:60vh; overflow:hidden}
+.hero .layer{position:absolute; inset:0; will-change:transform}
+.hero .sky{
+  background:linear-gradient(to bottom,var(--bg-top-1),var(--bg-top-2),var(--bg-top-3),var(--bg-top-4));
+}
+.hero .sea{
+  position:absolute; left:0; right:0; bottom:12%;
+  height:100px; background:#1b3c59; opacity:.7; border-radius:10px;
+}
+.hero .mountains{
+  position:absolute; left:0; right:0; bottom:18%;
+  height:38%; background:linear-gradient(180deg,#f3d9a3,#d9a96b);
+  clip-path:polygon(0% 80%,8% 70%,18% 78%,28% 60%,40% 75%,54% 58%,68% 72%,80% 62%,92% 70%,100% 60%,100% 100%,0% 100%);
+}
+.hero .silhouette{
+  position:absolute; left:0; right:0; bottom:0; height:42%;
+  background:var(--fg-silhouette);
+  clip-path:polygon(0 35%,10% 55%,20% 40%,32% 56%,48% 44%,60% 58%,74% 46%,86% 54%,100% 40%,100% 100%,0 100%);
+}
+
+/* Content Grid */
+.section-grid{margin-top:-40px; position:relative; z-index:20}
+.grid{
+  display:grid; grid-template-columns:1.25fr 1fr; gap:32px;
+}
+@media (max-width:1199px){ .grid{grid-template-columns:1fr 1fr}}
+@media (max-width:899px){ .grid{grid-template-columns:1fr; gap:24px} }
+
+.card{padding:24px 28px}
+.card.cream{background:var(--card-cream); color:#1a1408}
+.card.ink{background:var(--ink); color:#f1efe9; display:flex; align-items:center; justify-content:center; text-align:center}
+.card:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.card{transition:.2s transform,.2s box-shadow}
+
+/* Footer */
+.site-footer{
+  margin-top:64px; padding:24px; text-align:center;
+  background:#0d0a12; border-top:1px solid rgba(255,255,255,.06);
+}
+.site-footer a{opacity:.9}
+.site-footer a:hover{opacity:1; text-decoration:underline}
