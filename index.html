@@ -21,61 +21,56 @@
   <!-- Header/Navi STARTET direkt unter dem Hero und wird sticky -->
   <div id="site-header"></div>
 
-  <section class="section-grid container">
-    <div class="grid">
-      <!-- 1) links oben -->
-      <a class="card cream round shadow" href="/pages/team/">
-        <h1 class="h1">Get to know us</h1>
-        <div class="kicker">(Text „Team“)</div>
-      </a>
+    <main class="landing-container">
 
-      <!-- 2) rechts oben -->
-      <a class="card ink round shadow" href="/pages/team/">
-        <div>
-          <div class="h2">Teamfoto</div>
-        </div>
-      </a>
+      <!-- Reihe 1 -->
+      <section class="landing-row" style="--landing-image-h: 460px">
+        <article class="landingCard landingCard--text">
+          <h2>Get to know us</h2>
+          <p>Text "Team"</p>
+        </article>
 
-      <!-- 3) links mitte -->
-      <a class="round shadow" href="/pages/lore-and-fate/" style="display:block">
-        <div class="card ink round" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-          <div>
-            <div class="h2">Lore &amp; Fate</div>
-            <div>Bild</div>
-          </div>
-        </div>
-        <div class="card cream" style="border-top-left-radius:0;border-top-right-radius:0">
-          <div class="h2">Lore &amp; Fate</div>
-          <div class="kicker">(Text „Lore &amp; Fate“)</div>
-        </div>
-      </a>
+        <a class="landingCard landingCard--image" href="/pages/team/">
+          <img src="https://placehold.co/600x460?text=Team" alt="Teamfoto">
+        </a>
+      </section>
 
-      <!-- 4) rechts mitte -->
-      <a class="round shadow" href="/pages/toolkit/" style="display:block">
-        <div class="card ink round" style="border-bottom-left-radius:0;border-bottom-right-radius:0">
-          <div>
-            <div class="h2">Toolkit</div>
-            <div>Bild</div>
-          </div>
+      <!-- Reihe 2 -->
+      <section class="landing-row landing-row--swap" style="--landing-image-h: 320px">
+        <div class="landing-stack">
+          <a class="landingCard landingCard--image" href="/pages/lore-and-fate/">
+            <img src="https://placehold.co/600x320?text=Lore+%26+Fate" alt="Lore &amp; Fate">
+          </a>
+          <article class="landingCard landingCard--text landingCard--text-auto">
+            <h3>Lore &amp; Fate</h3>
+            <p>Text "Lore &amp; Fate"</p>
+          </article>
         </div>
-        <div class="card cream" style="border-top-left-radius:0;border-top-right-radius:0">
-          <div class="h2">Toolkit</div>
-          <div class="kicker">(Text „Toolkit“)</div>
+
+        <div class="landing-stack">
+          <a class="landingCard landingCard--image" href="/pages/toolkit/">
+            <img src="https://placehold.co/600x320?text=Toolkit" alt="Toolkit">
+          </a>
+          <article class="landingCard landingCard--text landingCard--text-auto">
+            <h3>Toolkit</h3>
+            <p>Text "Toolkit"</p>
+          </article>
         </div>
-      </a>
+      </section>
 
-      <!-- 5) links unten -->
-      <a class="card ink round shadow" href="/pages/merch/">
-        <div class="h2">Merch Foto</div>
-      </a>
+      <!-- Reihe 3 -->
+      <section class="landing-row" style="--landing-image-h: 380px">
+        <a class="landingCard landingCard--image" href="/pages/merch/">
+          <img src="https://placehold.co/600x380?text=Merch" alt="Merch Foto">
+        </a>
 
-      <!-- 6) rechts unten -->
-      <a class="card cream round shadow" href="/pages/merch/">
-        <div class="h1">Merch</div>
-        <div class="kicker">(Text „Merch“)</div>
-      </a>
-    </div>
-  </section>
+        <article class="landingCard landingCard--text">
+          <h2>Merch</h2>
+          <p>Text "Merch"</p>
+        </article>
+      </section>
+
+    </main>
 
   <div id="site-footer"></div>
   <script type="module" src="/src/pages/home.ts"></script>
