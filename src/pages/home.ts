@@ -6,5 +6,9 @@ import '../styles/components.css';
 
 (async () => {
   await mountLayout();
-  initParallax();
+  initParallax({
+    heroSelector: '.hero',
+    maxShiftPx: 140,  // etwas dramatischer
+    maxScale: 1.10
+  });
 })();

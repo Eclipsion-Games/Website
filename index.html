@@ -8,11 +8,15 @@
 <body>
   <div id="site-header"></div>
 
-  <section class="hero">
-    <div class="layer sky" data-speed="0.10"></div>
-    <div class="layer mountains" data-speed="0.35"></div>
-    <div class="layer sea" data-speed="0.20"></div>
-    <div class="layer silhouette" data-speed="0.60"></div>
+  <section class="hero" id="hero">
+    <!-- Reihenfolge/Z-Index: Himmel (hinten) → Sonne → Berge → Bäume → Vordergrund → Dunst -->
+    <div class="layer sky" data-depth="0.05"></div>
+    <div class="sun" data-sun></div>
+    <div class="layer mountains-far" data-depth="0.15"></div>
+    <div class="layer mountains-mid" data-depth="0.35"></div>
+    <div class="layer trees-near" data-depth="0.70"></div>
+    <div class="layer foreground" data-depth="1.00"></div>
+    <div class="fog" data-fog></div>
   </section>
 
   <section class="section-grid container">
