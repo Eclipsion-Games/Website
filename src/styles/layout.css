@@ -28,6 +28,7 @@
 .logo a { color: inherit; text-decoration: none; }
 .logo a:hover { filter: brightness(1.08); }
 .logo{font-weight:700; letter-spacing:.06em}
+.logo img{display:block;height:48px;width:auto;}
 .main-nav a{margin-left:24px}
 .main-nav a:hover{text-decoration:underline}
 
