@@ -2,8 +2,11 @@
 
 /* Header-Grundlayout */
 .site-header{
+  padding:18px 0;
+}
+
+.site-header .container{
   display:flex; align-items:center; justify-content:space-between;
-  padding:18px clamp(16px,4vw,48px);
 }
 
 /* Sticky-Verhalten */
@@ -28,6 +31,7 @@
 .logo a { color: inherit; text-decoration: none; }
 .logo a:hover { filter: brightness(1.08); }
 .logo{font-weight:700; letter-spacing:.06em}
+.logo img{display:block;height:clamp(48px,8vw,96px);width:auto;}
 .main-nav a{margin-left:24px}
 .main-nav a:hover{text-decoration:underline}
 
