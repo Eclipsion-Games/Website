@@ -239,10 +239,6 @@ a:focus {
   margin: 0;
 }
 
-.anchor {
-  min-height: 200px;
-}
-
 .site-footer {
   background: #0d0a12;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
