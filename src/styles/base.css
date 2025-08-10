@@ -17,7 +17,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0;
   color:var(--text);
-  background:#0b0911;
+  background:linear-gradient(#210905,#261F44);
   font:400 16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
 }
 h1,h2,h3,.logo,nav a{font-family:Cinzel,serif}
