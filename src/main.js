@@ -1,9 +1,15 @@
 import './style.css';
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hey, We're Eclipsion Games</h1>
-  <h2>About us</h2>
-  <p>We are just an Indie Game Studio</p>
-  <h2>What we're working on</h2>
-  <p>Create adventures with a toolkit.</p>
-`;
+const layers = document.querySelectorAll('[data-speed]');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function parallax() {
+  const y = window.scrollY;
+  layers.forEach((layer) => {
+    const speed = prefersReduced.matches ? 0 : parseFloat(layer.dataset.speed);
+    layer.style.transform = `translateY(${y * speed}px)`;
+  });
+}
+
+window.addEventListener('scroll', parallax);
+parallax();
