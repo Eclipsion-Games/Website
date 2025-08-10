@@ -1,16 +1,39 @@
 /* Header + Hero */
+
+/* Header-Grundlayout */
 .site-header{
-  position:relative; z-index:10;
   display:flex; align-items:center; justify-content:space-between;
   padding:18px clamp(16px,4vw,48px);
 }
+
+/* Sticky-Verhalten */
+.sticky-ready {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* über Content */
+  background: rgba(11, 9, 17, 0.66); /* leicht durchsichtig, wirkt gut auf Home direkt unter Hero */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background-color .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+/* Sobald der Header oben "klebt" (Klasse via JS) etwas deckender + Schatten */
+.sticky-ready.is-stuck{
+  background: rgba(11, 9, 17, 0.92);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+/* Kleine Feinschliffe */
+.logo a { color: inherit; text-decoration: none; }
+.logo a:hover { filter: brightness(1.08); }
 .logo{font-weight:700; letter-spacing:.06em}
-.main-nav a{margin-left:48px}
+.main-nav a{margin-left:24px}
 .main-nav a:hover{text-decoration:underline}
 
 
 /* Content Grid */
-.section-grid{margin-top:-40px; position:relative; z-index:20}
+.section-grid{margin-top:0; position:relative; z-index:20}
 .grid{
   display:grid; grid-template-columns:1.25fr 1fr; gap:32px;
 }
