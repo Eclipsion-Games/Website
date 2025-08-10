@@ -10,13 +10,10 @@ export async function mountLayout() {
   await inject('#site-footer', '/partials/footer.html');
 }
 
-/** Macht .site-header sticky und fügt 'is-stuck' hinzu, sobald sie oben klebt */
+/** Überwacht .site-header und fügt 'is-stuck' hinzu, sobald sie oben klebt */
 export function enableStickyHeader() {
   const header = document.querySelector<HTMLElement>('.site-header');
   if (!header) return;
-
-  // CSS-Hook
-  header.classList.add('sticky-ready');
 
   // Sentinel vor den Header setzen, um "Ankleben" zu erkennen
   const sentinel = document.createElement('div');

@@ -1,16 +1,8 @@
 /* Header + Hero */
 
-/* Header-Grundlayout */
+/* Header-Grundlayout + sticky Verhalten */
 .site-header{
   padding:18px 0;
-}
-
-.site-header .container{
-  display:flex; align-items:center; justify-content:space-between;
-}
-
-/* Sticky-Verhalten */
-.sticky-ready {
   position: sticky;
   top: 0;
   z-index: 100; /* über Content */
@@ -20,8 +12,12 @@
   transition: background-color .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
+.site-header .container{
+  display:flex; align-items:center; justify-content:space-between;
+}
+
 /* Sobald der Header oben "klebt" (Klasse via JS) etwas deckender + Schatten */
-.sticky-ready.is-stuck{
+.site-header.is-stuck{
   background: rgba(11, 9, 17, 0.92);
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
   border-bottom-color: rgba(255,255,255,.08);
