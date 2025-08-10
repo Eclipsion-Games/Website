@@ -101,16 +101,15 @@ a:focus {
 }
 
 .nav {
-  position: absolute;
-  bottom: 33%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 1200px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 clamp(16px, 4vw, 48px);
+  padding: 12px clamp(16px, 4vw, 48px);
+  background: rgba(18, 10, 15, 0.8);
+  backdrop-filter: blur(4px);
   font-family: 'Cinzel', 'Cormorant Garamond', serif;
 }
 
