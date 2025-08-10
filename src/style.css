@@ -140,14 +140,14 @@ a:focus {
   text-decoration: underline;
 }
 
-.main-grid {
-  max-width: 1200px;
-  margin: -40px auto 0;
-  padding: 0 clamp(16px, 4vw, 48px);
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 32px;
-}
+  .main-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 32px;
+  }
 
 @media (max-width: 1199px) {
   .main-grid {
