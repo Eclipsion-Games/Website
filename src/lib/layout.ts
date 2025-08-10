@@ -15,8 +15,7 @@ export function enableStickyHeader() {
   const header = document.querySelector<HTMLElement>('.site-header');
   if (!header) return;
 
-  // CSS-Hook
-  header.classList.add('sticky-ready');
+  // Header carries sticky-ready class in markup; we only need to detect when it sticks
 
   // Sentinel vor den Header setzen, um "Ankleben" zu erkennen
   const sentinel = document.createElement('div');
