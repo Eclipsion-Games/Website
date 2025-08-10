@@ -27,7 +27,10 @@
 .logo a:hover { filter: brightness(1.08); }
 .logo{font-weight:700; letter-spacing:.06em}
 .logo img{display:block;height:clamp(48px,8vw,96px);width:auto;}
-.main-nav a{margin-left:24px}
+.main-nav a{
+  margin-left:24px;
+  font-size: 22px;
+}
 .main-nav a:hover{text-decoration:underline}
 
 
