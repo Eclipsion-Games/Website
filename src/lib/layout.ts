@@ -2,7 +2,9 @@ async function inject(selector: string, url: string) {
   const host = document.querySelector<HTMLElement>(selector);
   if (!host) return;
   const res = await fetch(url, { cache: 'no-store' });
-  host.innerHTML = await res.text();
+  // Replace the placeholder node entirely so sticky positioning
+  // on injected fragments isn't limited by the temporary wrapper
+  host.outerHTML = await res.text();
 }
 
 export async function mountLayout() {
@@ -10,13 +12,10 @@ export async function mountLayout() {
   await inject('#site-footer', '/partials/footer.html');
 }
 
-/** Macht .site-header sticky und fügt 'is-stuck' hinzu, sobald sie oben klebt */
+/** Überwacht .site-header und fügt 'is-stuck' hinzu, sobald sie oben klebt */
 export function enableStickyHeader() {
   const header = document.querySelector<HTMLElement>('.site-header');
   if (!header) return;
-
-  // CSS-Hook
-  header.classList.add('sticky-ready');
 
   // Sentinel vor den Header setzen, um "Ankleben" zu erkennen
   const sentinel = document.createElement('div');
