@@ -2,7 +2,6 @@
 
 /* Header-Grundlayout + sticky Verhalten */
 .site-header{
-  padding:18px 0;
   position: sticky;
   top: 0;
   z-index: 100; /* über Content */
