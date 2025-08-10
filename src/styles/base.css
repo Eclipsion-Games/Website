@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
 
 :root{
   --bg-top-1:#5a2bc4;
@@ -18,9 +18,9 @@ body{
   margin:0;
   color:var(--text);
   background:linear-gradient(#210905,#261F44);
-  font:400 16px/1.6 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  font:400 16px/1.6 "Cormorant Garamond",serif;
 }
-h1,h2,h3,.logo,nav a{font-family:Cinzel,serif}
+h1,h2,h3,.logo,nav a{font-family:"Cormorant Garamond",serif}
 a{color:var(--text);text-decoration:none;outline-offset:3px}
 a:focus-visible{outline:2px solid var(--bg-top-4)}
 .container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
