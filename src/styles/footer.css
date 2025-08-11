@@ -1,0 +1,7 @@
+/* Footer */
+.site-footer{
+  margin-top:64px; padding:24px; text-align:center;
+  background:#0d0a12; border-top:1px solid rgba(255,255,255,.06);
+}
+.site-footer a{opacity:.9}
+.site-footer a:hover{opacity:1; text-decoration:underline}

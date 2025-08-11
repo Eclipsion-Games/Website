@@ -1,0 +1,34 @@
+/* Header */
+
+/* Header-Grundlayout + sticky Verhalten */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 100; /* über Content */
+  background: rgba(11, 9, 17, 0.66); /* leicht durchsichtig, wirkt gut auf Home direkt unter Hero */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background-color .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.site-header .container{
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+/* Sobald der Header oben "klebt" (Klasse via JS) etwas deckender + Schatten */
+.site-header.is-stuck{
+  background: rgba(11, 9, 17, 0.92);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+/* Kleine Feinschliffe */
+.logo a { color: inherit; text-decoration: none; }
+.logo a:hover { filter: brightness(1.08); }
+.logo{font-weight:700; letter-spacing:.06em}
+.logo img{display:block;height:clamp(48px,8vw,96px);width:auto;}
+.main-nav a{
+  margin-left:24px;
+  font-size: 22px;
+}
+.main-nav a:hover{text-decoration:underline}

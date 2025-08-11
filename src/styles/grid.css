@@ -1,0 +1,13 @@
+/* Content Grid */
+.section-grid{margin-top:0; position:relative; z-index:20}
+.grid{
+  display:grid; grid-template-columns:1.25fr 1fr; gap:32px;
+}
+@media (max-width:1199px){ .grid{grid-template-columns:1fr 1fr}}
+@media (max-width:899px){ .grid{grid-template-columns:1fr; gap:24px} }
+
+.card{padding:24px 28px}
+.card.cream{background:var(--card-cream); color:#1a1408}
+.card.ink{background:var(--ink); color:#f1efe9; display:flex; align-items:center; justify-content:center; text-align:center}
+.card:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.card{transition:.2s transform,.2s box-shadow}
