@@ -19,60 +19,54 @@
   </section>
 
   <!-- Header/Navi STARTET direkt unter dem Hero und wird sticky -->
-  <div id="site-header"></div>
+    <div id="site-header"></div>
 
-    <main class="landing-container">
+      <main>
+        <section class="layout cards">
 
-      <!-- Reihe 1 -->
-      <section class="landing-row" style="--landing-image-h: 460px">
-        <article class="landingCard landingCard--text">
-          <h2>Get to know us</h2>
-          <p>Text "Team"</p>
-        </article>
+          <!-- Vollbreit: Text links, Bild rechts (nahtlos aneinander) -->
+          <div class="media-row">
+            <div class="panel text">
+              <h3>Get to know us</h3>
+              <p>Erfahre mehr über unser Team und unsere Mission.</p>
+            </div>
+            <div class="panel image">
+              <img src="/public/images/teamfoto.jpg" alt="Teamfoto">
+            </div>
+          </div>
 
-        <a class="landingCard landingCard--image" href="/pages/team/">
-          <img src="https://placehold.co/600x460?text=Team" alt="Teamfoto">
-        </a>
-      </section>
+          <!-- Halbe Breite: Bild + Caption -->
+          <figure class="tile figure">
+            <img src="/public/images/lore-and-fate.jpg" alt="Lore &amp; Fate">
+            <figcaption>
+              <h4>Lore &amp; Fate</h4>
+              <p>Entdecke die Welt und Geschichte von Lore &amp; Fate.</p>
+            </figcaption>
+          </figure>
 
-      <!-- Reihe 2 -->
-      <section class="landing-row landing-row--swap" style="--landing-image-h: 320px">
-        <div class="landing-stack">
-          <a class="landingCard landingCard--image" href="/pages/lore-and-fate/">
-            <img src="https://placehold.co/600x320?text=Lore+%26+Fate" alt="Lore &amp; Fate">
-          </a>
-          <article class="landingCard landingCard--text landingCard--text-auto">
-            <h3>Lore &amp; Fate</h3>
-            <p>Text "Lore &amp; Fate"</p>
-          </article>
-        </div>
+          <figure class="tile figure">
+            <img src="/public/images/toolkit.jpg" alt="Toolkit">
+            <figcaption>
+              <h4>Toolkit</h4>
+              <p>Unser Toolkit für kreative Abenteuer.</p>
+            </figcaption>
+          </figure>
 
-        <div class="landing-stack">
-          <a class="landingCard landingCard--image" href="/pages/toolkit/">
-            <img src="https://placehold.co/600x320?text=Toolkit" alt="Toolkit">
-          </a>
-          <article class="landingCard landingCard--text landingCard--text-auto">
-            <h3>Toolkit</h3>
-            <p>Text "Toolkit"</p>
-          </article>
-        </div>
-      </section>
+          <!-- Vollbreit: Bild links, Text rechts -->
+          <div class="media-row reverse">
+            <div class="panel image">
+              <img src="/public/images/merch.jpg" alt="Merch Foto">
+            </div>
+            <div class="panel text">
+              <h3>Merch</h3>
+              <p>Exklusive Fanartikel für dich.</p>
+            </div>
+          </div>
 
-      <!-- Reihe 3 -->
-      <section class="landing-row" style="--landing-image-h: 380px">
-        <a class="landingCard landingCard--image" href="/pages/merch/">
-          <img src="https://placehold.co/600x380?text=Merch" alt="Merch Foto">
-        </a>
+        </section>
+      </main>
 
-        <article class="landingCard landingCard--text">
-          <h2>Merch</h2>
-          <p>Text "Merch"</p>
-        </article>
-      </section>
-
-    </main>
-
-  <div id="site-footer"></div>
-  <script type="module" src="/src/pages/home.ts"></script>
-</body>
-</html>
+    <div id="site-footer"></div>
+    <script type="module" src="/src/pages/home.ts"></script>
+  </body>
+  </html>

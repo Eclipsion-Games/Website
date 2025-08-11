@@ -1,0 +1,94 @@
+/* Container: 2-Spalten-Grid für die Kacheln */
+.layout.cards{
+  --gap: clamp(16px, 3vw, 28px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: start;
+  grid-auto-flow: dense;
+}
+
+/* Vollbreite-Reihe: Text & Bild sind zwei separaten Felder ohne sichtbare Fuge */
+.cards .media-row{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Text | Bild */
+  gap: 0;                         /* kein Zwischenraum */
+  align-items: center;            /* Mittelpunkte ausrichten */
+  position: relative;             /* für gemeinsamen Shadow */
+}
+
+/* Gemeinsamer Schatten über die ganze Reihe (verhindert „Naht“-Schatten) */
+.cards .media-row::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  pointer-events: none;
+}
+
+/* Panels: eigene Hintergründe, aber ohne individuellen Shadow */
+.cards .panel{
+  background: #fff7e0;
+  overflow: hidden;
+  padding: clamp(12px, 1.5vw, 20px);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+/* Text-Panel: außen rund, innen (zum Bild) kantig */
+.cards .media-row .panel.text{
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  border-radius: 12px 0 0 12px; /* links rund, rechts eckig */
+}
+.cards .media-row.reverse .panel.text{
+  border-radius: 0 12px 12px 0; /* rechts rund, links eckig */
+}
+
+/* Bild-Panel mit Innenpadding */
+.cards .panel.image{ padding: clamp(10px, 1vw, 16px); }
+.cards .panel.image img{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  /* Bildrundung nur an den äußeren Ecken, passend zum Panel */
+  border-radius: 0 8px 8px 0;
+}
+.cards .media-row.reverse .panel.image img{
+  border-radius: 8px 0 0 8px;
+}
+
+/* Halbe-Breite-Kacheln (Bild + Text darunter) */
+.cards .tile{
+  background: #fff7e0;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  overflow: hidden;
+  padding: clamp(12px, 1.5vw, 20px);
+}
+.cards .figure{
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.cards .figure img{
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.cards .figure figcaption h4{ margin: 0 0 .25rem; }
+.cards .figure figcaption p{ margin: 0; }
+
+/* Responsive: alles einspaltig, runde Ecken wieder überall */
+@media (max-width: 900px){
+  .layout.cards{ grid-template-columns: 1fr; }
+  .cards .media-row{ grid-template-columns: 1fr; }
+  .cards .panel{ border-radius: 12px; }
+  .cards .panel.image img{ border-radius: 8px; }
+}
+
