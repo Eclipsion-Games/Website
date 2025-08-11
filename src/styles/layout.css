@@ -173,7 +173,7 @@
 }
 
 .landingCard--image{
-  background: #0f0d1c;
+  background: var(--color-dark);
   border: 4px solid var(--landing-ink);
   block-size: var(--landing-image-h);
   display: grid;
@@ -203,7 +203,7 @@
 
 .landing-stack{
   display: grid;
-  gap: clamp(12px, 1.5vw, 20px);
+  gap: var(--space-sm);
   flex: 1 1 0;
   min-inline-size: 0;
 }

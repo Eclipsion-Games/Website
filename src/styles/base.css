@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&display=swap');
 
-:root{
-  --bg-top-1:#5a2bc4;
-  --bg-top-2:#c24bb8;
-  --bg-top-3:#ff8a00;
-  --bg-top-4:#ffd36b;
-  --fg-silhouette:#120a0f;
-  --card-cream:#f9efc8;
-  --ink:#1b1633;
-  --text:#f7f3e8;
-  --muted:#cbbf99;
-}
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -25,4 +13,4 @@ a{color:var(--text);text-decoration:none;outline-offset:3px}
 a:focus-visible{outline:2px solid var(--bg-top-4)}
 .container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
 .shadow{box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.round{border-radius:16px}
+.round{border-radius:var(--radius-lg)}

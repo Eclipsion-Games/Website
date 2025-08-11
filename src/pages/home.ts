@@ -1,5 +1,6 @@
 import { mountLayout, enableStickyHeader } from '../lib/layout';
 import { initParallax } from '../lib/parallax';
+import '../styles/variables.css';
 import '../styles/base.css';
 import '../styles/layout.css';
 import '../styles/components.css';

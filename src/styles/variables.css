@@ -1,0 +1,17 @@
+:root{
+  --bg-top-1:#5a2bc4;
+  --bg-top-2:#c24bb8;
+  --bg-top-3:#ff8a00;
+  --bg-top-4:#ffd36b;
+  --fg-silhouette:#120a0f;
+  --card-cream:#f9efc8;
+  --ink:#1b1633;
+  --text:#f7f3e8;
+  --muted:#cbbf99;
+  --color-card:#fff7e0;
+  --color-dark:#0f0d1c;
+  --space-sm:clamp(12px, 1.5vw, 20px);
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:16px;
+}

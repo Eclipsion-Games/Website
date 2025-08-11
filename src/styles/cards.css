@@ -26,17 +26,17 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   box-shadow: 0 6px 18px rgba(0,0,0,.12);
   pointer-events: none;
 }
 
 /* Panels: eigene Hintergründe, aber ohne individuellen Shadow */
 .cards .panel{
-  background: #fff7e0;
+  background: var(--color-card);
   overflow: hidden;
-  padding: clamp(12px, 1.5vw, 20px);
-  border-radius: 12px;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
   box-shadow: none;
 }
 
@@ -45,10 +45,10 @@
   display: flex;
   flex-direction: column;
   gap: .6rem;
-  border-radius: 12px 0 0 12px; /* links rund, rechts eckig */
+  border-radius: var(--radius-md) 0 0 var(--radius-md); /* links rund, rechts eckig */
 }
 .cards .media-row.reverse .panel.text{
-  border-radius: 0 12px 12px 0; /* rechts rund, links eckig */
+  border-radius: 0 var(--radius-md) var(--radius-md) 0; /* rechts rund, links eckig */
 }
 
 /* Bild-Panel mit Innenpadding */
@@ -59,19 +59,19 @@
   object-fit: cover;
   display: block;
   /* Bildrundung nur an den äußeren Ecken, passend zum Panel */
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 .cards .media-row.reverse .panel.image img{
-  border-radius: 8px 0 0 8px;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
 /* Halbe-Breite-Kacheln (Bild + Text darunter) */
 .cards .tile{
-  background: #fff7e0;
-  border-radius: 12px;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
   box-shadow: 0 6px 18px rgba(0,0,0,.12);
   overflow: hidden;
-  padding: clamp(12px, 1.5vw, 20px);
+  padding: var(--space-sm);
 }
 .cards .figure{
   display: flex;
@@ -82,7 +82,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 }
 .cards .figure figcaption h4{ margin: 0 0 .25rem; }
 .cards .figure figcaption p{ margin: 0; }
@@ -91,7 +91,7 @@
 @media (max-width: 900px){
   .layout.cards{ grid-template-columns: 1fr; }
   .cards .media-row{ grid-template-columns: 1fr; }
-  .cards .panel{ border-radius: 12px; }
-  .cards .panel.image img{ border-radius: 8px; }
+  .cards .panel{ border-radius: var(--radius-md); }
+  .cards .panel.image img{ border-radius: var(--radius-sm); }
 }
 
