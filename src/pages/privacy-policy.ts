@@ -1,9 +1,3 @@
-import { mountLayout, enableStickyHeader } from '../lib/layout';
-import '../styles/base.css';
-import '../styles/layout.css';
-import '../styles/components.css';
+import { bootstrapPage } from '../lib/page';
 
-(async () => {
-  await mountLayout();
-  enableStickyHeader();
-})();
+bootstrapPage();
