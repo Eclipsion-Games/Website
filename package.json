@@ -11,10 +11,12 @@
     "lint:css": "stylelint \"src/**/*.css\""
   },
   "devDependencies": {
-    "vite": "^5.2.0",
-    "typescript": "^5.2.2",
+    "@stylistic/stylelint-config": "^3.0.1",
+    "@stylistic/stylelint-plugin": "^4.0.0",
     "stylelint": "^16.8.1",
-    "stylelint-config-standard": "^36.0.0",
-    "stylelint-order": "^6.0.4"
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-order": "^6.0.4",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
   }
 }

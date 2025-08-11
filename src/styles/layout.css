@@ -1,295 +1,414 @@
-@import "./breakpoints.css";
+@import url("./breakpoints.css");
+
 /* Header + Hero */
 
 /* Header-Grundlayout + sticky Verhalten */
-.site-header{
+
+.site-header {
+  backdrop-filter: blur(6px);
+  background: rgb(11 9 17 / 66%); /* leicht durchsichtig, wirkt gut auf Home direkt unter Hero */
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
   position: sticky;
   top: 0;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   z-index: 100; /* über Content */
-  background: rgba(11, 9, 17, 0.66); /* leicht durchsichtig, wirkt gut auf Home direkt unter Hero */
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  transition: background-color .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
-.site-header .container{
-  display:flex;
-  justify-content:space-between;
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Sobald der Header oben "klebt" (Klasse via JS) etwas deckender + Schatten */
-.site-header.is-stuck{
-  background: rgba(11, 9, 17, 0.92);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  border-bottom-color: rgba(255,255,255,.08);
+
+.site-header.is-stuck {
+  background: rgb(11 9 17 / 92%);
+  border-bottom-color: rgb(255 255 255 / 8%);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 35%);
 }
 
 /* Kleine Feinschliffe */
+
 .logo a {
   color: inherit;
   text-decoration: none;
 }
-.logo a:hover {
+
+/* Spezifität neutralisieren, damit keine Reihenfolge-Warnungen entstehen */
+
+:where(.logo a:hover) {
   filter: brightness(1.08);
 }
-.logo{
-  font-weight:700;
-  letter-spacing:.06em;
-}
-.logo img{
-  display:block;
-  height:clamp(48px,8vw,96px);
-  width:auto;
-}
-.main-nav a{
-  margin-left:24px;
-  font-size: 22px;
-}
-.main-nav a:hover{
-  text-decoration:underline;
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
+.logo img {
+  display: block;
+  height: clamp(48px, 8vw, 96px);
+  width: auto;
+}
+
+.main-nav a {
+  font-size: 22px;
+  margin-left: 24px;
+}
+
+.site-footer a {
+  opacity: 0.9;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
 
 /* Content Grid */
-.section-grid{
-  margin-top:0;
-  position:relative;
-  z-index:20;
-}
-.grid{
-  grid-template-columns:1.25fr 1fr;
-  gap:32px;
+
+.section-grid {
+  margin-top: 0;
+  position: relative;
+  z-index: 20;
 }
 
-.card{
-  padding:24px 28px;
-  background:var(--card-bg);
-  color:var(--card-text);
-  transition:.2s transform,.2s box-shadow;
+.grid {
+  gap: 32px;
+  grid-template-columns: 1.25fr 1fr;
 }
-.card--cream{
-  --card-bg:var(--card-cream);
-  --card-text:var(--card-cream-text);
+
+.card {
+  background: var(--card-bg);
+  color: var(--card-text);
+  padding: 24px 28px;
+  transition: 0.2s transform, 0.2s box-shadow;
 }
-.card--ink{
-  --card-bg:var(--ink);
-  --card-text:var(--card-ink-text);
+
+.card--cream {
+  --card-bg: var(--card-cream);
+  --card-text: var(--card-cream-text);
 }
-.card--center{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+
+.card--ink {
+  --card-bg: var(--ink);
+  --card-text: var(--card-ink-text);
 }
-.card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 40px rgba(0,0,0,.4);
+
+.card--center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0 16px 40px rgb(0 0 0 / 40%);
+  transform: translateY(-2px);
 }
 
 /* Footer */
-.site-footer{
-  margin-top:64px;
-  padding:24px;
-  text-align:center;
-  background:#0d0a12;
-  border-top:1px solid rgba(255,255,255,.06);
+
+.site-footer {
+  background: #0d0a12;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+  margin-top: 64px;
+  padding: 24px;
+  text-align: center;
 }
-.site-footer a{
-  opacity:.9;
-}
-.site-footer a:hover{
-  opacity:1;
-  text-decoration:underline;
+
+.site-footer a:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 /* === Firewatch-Style Hero === */
-.hero{
-  position:relative;
-  min-height:70vh;
-  overflow:hidden;
-  isolation:isolate; /* sauberer Blend der Overlays */
+
+.hero {
+  isolation: isolate; /* sauberer Blend der Overlays */
+  min-height: 70vh;
+  overflow: hidden;
+  position: relative;
 }
+
 .hero .layer,
 .hero .sun,
-.hero .fog{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
+.hero .fog {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
 }
 
 /* Himmel mit warmem Verlauf + leichte Sättigung */
-.hero .sky{
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    var(--bg-top-1) 0%,
-    var(--bg-top-2) 35%,
-    var(--bg-top-3) 70%,
-    var(--bg-top-4) 100%
-  );
+
+.hero .sky {
+  background:
+    linear-gradient(
+      to bottom,
+      var(--bg-top-1) 0%,
+      var(--bg-top-2) 35%,
+      var(--bg-top-3) 70%,
+      var(--bg-top-4) 100%
+    );
   filter: saturate(1.05);
+  z-index: 1;
 }
 
 /* Sonne – radialer Glow */
-.hero .sun{
-  z-index: 2;
-  width: 220px;
+
+.hero .sun {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgb(255 230 150 / 95%) 0%,
+      rgb(255 205 95 / 85%) 35%,
+      rgb(255 180 70 / 60%) 60%,
+      rgb(255 160 40 / 20%) 75%,
+      rgb(255 140 0 / 0%) 100%
+    );
+  border-radius: 50%;
+  filter: blur(0.4px);
   height: 220px;
   left: 50%;
+  mix-blend-mode: screen;
   top: 22%;
   transform: translate(-50%, -50%);
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,230,150,0.95) 0%, rgba(255,205,95,0.85) 35%, rgba(255,180,70,0.6) 60%, rgba(255,160,40,0.2) 75%, rgba(255,140,0,0) 100%);
-  mix-blend-mode: screen;
-  filter: blur(0.4px);
+  width: 220px;
+  z-index: 2;
 }
 
 /* Silhouetten: statt Bilder nutzen wir clip-path-Formen  */
-.hero .mountains-far{
-  z-index: 3;
+
+.hero .mountains-far {
   background: linear-gradient(180deg, #f3d9a3, #d9a96b);
-  clip-path: polygon(0% 75%, 6% 72%, 14% 78%, 22% 68%, 32% 74%, 42% 66%, 55% 72%, 68% 64%, 80% 70%, 90% 66%, 100% 68%, 100% 100%, 0% 100%);
+  clip-path:
+    polygon(
+      0% 75%,
+      6% 72%,
+      14% 78%,
+      22% 68%,
+      32% 74%,
+      42% 66%,
+      55% 72%,
+      68% 64%,
+      80% 70%,
+      90% 66%,
+      100% 68%,
+      100% 100%,
+      0% 100%
+    );
+  z-index: 3;
 }
-.hero .mountains-mid{
-  z-index: 4;
+
+.hero .mountains-mid {
   background: linear-gradient(180deg, #d8a75e, #c17a3a);
-  clip-path: polygon(0% 78%, 8% 70%, 18% 82%, 28% 68%, 40% 80%, 52% 66%, 66% 78%, 80% 64%, 92% 74%, 100% 70%, 100% 100%, 0% 100%);
-  opacity:.95;
+  clip-path:
+    polygon(
+      0% 78%,
+      8% 70%,
+      18% 82%,
+      28% 68%,
+      40% 80%,
+      52% 66%,
+      66% 78%,
+      80% 64%,
+      92% 74%,
+      100% 70%,
+      100% 100%,
+      0% 100%
+    );
+  opacity: 0.95;
+  z-index: 4;
 }
-.hero .trees-near{
-  z-index: 5;
+
+.hero .trees-near {
   background: var(--fg-silhouette);
+
   /* grob gezahnte Baumlinie */
-  clip-path: polygon(0 78%, 5% 84%, 8% 80%, 14% 86%, 18% 80%, 24% 88%, 30% 80%, 38% 90%, 46% 82%, 52% 90%, 60% 82%, 66% 88%, 74% 82%, 82% 90%, 90% 84%, 96% 88%, 100% 82%, 100% 100%, 0 100%);
+  clip-path:
+    polygon(
+      0 78%,
+      5% 84%,
+      8% 80%,
+      14% 86%,
+      18% 80%,
+      24% 88%,
+      30% 80%,
+      38% 90%,
+      46% 82%,
+      52% 90%,
+      60% 82%,
+      66% 88%,
+      74% 82%,
+      82% 90%,
+      90% 84%,
+      96% 88%,
+      100% 82%,
+      100% 100%,
+      0 100%
+    );
+  z-index: 5;
 }
-.hero .foreground{
-  z-index: 6;
+
+.hero .foreground {
   background: #0f0910; /* noch dunkler */
-  clip-path: polygon(0 86%, 8% 90%, 16% 88%, 24% 94%, 36% 88%, 48% 96%, 60% 90%, 70% 94%, 82% 88%, 92% 92%, 100% 88%, 100% 100%, 0 100%);
+  clip-path:
+    polygon(
+      0 86%,
+      8% 90%,
+      16% 88%,
+      24% 94%,
+      36% 88%,
+      48% 96%,
+      60% 90%,
+      70% 94%,
+      82% 88%,
+      92% 92%,
+      100% 88%,
+      100% 100%,
+      0 100%
+    );
+  z-index: 6;
 }
 
 /* Atmosphärischer Dunst über allem */
-.hero .fog{
-  z-index: 7;
-  opacity: 0; /* JS blendet ein */
+
+.hero .fog {
   background:
-    radial-gradient(120% 70% at 50% 10%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 55%, rgba(255,255,255,0) 70%),
-    linear-gradient(to top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 60%, rgba(255,255,255,0.22) 100%);
+    radial-gradient(
+      120% 70% at 50% 10%,
+      rgb(255 255 255 / 18%) 0%,
+      rgb(255 255 255 / 6%) 55%,
+      rgb(255 255 255 / 0%) 70%
+    ),
+    linear-gradient(
+      to top,
+      rgb(255 255 255 / 0%) 0%,
+      rgb(255 255 255 / 12%) 60%,
+      rgb(255 255 255 / 22%) 100%
+    );
   mix-blend-mode: screen;
+  opacity: 0; /* JS blendet ein */
+  z-index: 7;
 }
 
 /* Performance-Hinweise */
-.hero .layer{
-  will-change: transform;
+
+.hero .layer {
   transform-origin: center bottom;
+  will-change: transform;
 }
 
-:root{
+:root {
   --landing-row-gap: clamp(28px, 6vw, 72px);
   --landing-col-gap: clamp(16px, 4vw, 40px);
-  --landing-paper: #FBF2C5;
-  --landing-ink:   #1D1733;
+  --landing-paper: #fbf2c5;
+  --landing-ink: #1d1733;
   --landing-radius: 18px;
-  --landing-shadow: 0 8px 24px rgba(0,0,0,.25);
+  --landing-shadow: 0 8px 24px rgb(0 0 0 / 25%);
 }
 
-.landing-container{
+.landing-container {
   gap: var(--landing-row-gap);
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 1200px;
   padding: clamp(16px, 3vw, 32px);
 }
 
-.landing-row{
-  display: flex;
+.landing-row {
   align-items: stretch;
+  display: flex;
   gap: var(--landing-col-gap);
 }
 
-.landing-row.landing-row--swap{
+.landing-row.landing-row--swap {
   flex-direction: row-reverse;
 }
 
-.landing-card{
+.landing-card {
   border-radius: var(--landing-radius);
   box-shadow: var(--landing-shadow);
+  flex: 1 1 0;
   overflow: hidden;
-  flex: 1 1 0;
 }
 
-.landing-card__image{
+.landing-card__image {
   background: #0f0d1c;
-  border: 4px solid var(--landing-ink);
   block-size: var(--landing-image-h);
+  border: 4px solid var(--landing-ink);
 }
-.landing-card__image img{
-  inline-size: 100%;
+
+.landing-card__image img {
   block-size: 100%;
-  object-fit: cover;
   display: block;
+  inline-size: 100%;
+  object-fit: cover;
 }
 
-.landing-card__text{
-  background: var(--landing-paper);
-  border: 4px solid var(--landing-paper);
-  block-size: calc(var(--landing-image-h) * 0.75);
-  align-self: center;
-  padding: clamp(18px, 2vw, 28px);
+.landing-card__text {
   align-content: center;
-  gap: .5rem;
+  align-self: center;
+  background: var(--landing-paper);
+  block-size: calc(var(--landing-image-h) * 0.75);
+  border: 4px solid var(--landing-paper);
+  gap: 0.5rem;
+  padding: clamp(18px, 2vw, 28px);
 }
 
-.landing-card__text--auto{
-  block-size: auto;
+.landing-card__text--auto {
   align-self: start;
+  block-size: auto;
 }
 
-.landing-stack{
-  gap: clamp(12px, 1.5vw, 20px);
+.landing-stack {
   flex: 1 1 0;
+  gap: clamp(12px, 1.5vw, 20px);
   min-inline-size: 0;
 }
 
 /* Media Queries */
 
-@media (max-width: var(--bp-tablet)){
-  .grid{
-    grid-template-columns:1fr 1fr;
+/* var(--bp-...) funktioniert nicht in @media → feste Werte nutzen */
+@media (width <= 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: var(--bp-mobile)){
-  .grid{
-    grid-template-columns:1fr;
-    gap:24px;
+@media (width <= 640px) {
+  .grid {
+    gap: 24px;
+    grid-template-columns: 1fr;
   }
-  .hero{
+
+  .hero {
     min-height: 56vh;
   }
-  .hero .sun{
-    width: 180px;
+
+  .hero .sun {
     height: 180px;
     top: 24%;
+    width: 180px;
   }
 }
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) {
   .hero .layer,
-  .hero .sun{
+  .hero .sun {
     transform: none !important;
   }
-  .hero .fog{
-    opacity: .25;
+
+  .hero .fog {
+    opacity: 0.25;
   }
 }
 
-@media (max-width: 900px){
-  .landing-row{
+@media (width <= 900px) {
+  .landing-row {
     flex-direction: column;
   }
+
   .landing-card__image,
-  .landing-card__text{
+  .landing-card__text {
     block-size: auto;
   }
 }
