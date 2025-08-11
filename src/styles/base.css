@@ -10,6 +10,8 @@
   --ink:#1b1633;
   --text:#f7f3e8;
   --muted:#cbbf99;
+  --card-cream-text:#1a1408;
+  --card-ink-text:#f1efe9;
 }
 
 *{box-sizing:border-box}
@@ -26,3 +28,7 @@ a:focus-visible{outline:2px solid var(--bg-top-4)}
 .container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
 .shadow{box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .round{border-radius:16px}
+
+.u-grid{display:grid}
+.u-items-center{align-items:center}
+.u-items-start{align-items:start}
