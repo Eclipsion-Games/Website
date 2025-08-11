@@ -1,10 +1,8 @@
 /* Container: 2-Spalten-Grid für die Kacheln */
 .layout.cards{
   --gap: clamp(16px, 3vw, 28px);
-  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--gap);
-  align-items: start;
   grid-auto-flow: dense;
   max-width: 1200px;
   margin: 0 auto;
@@ -14,10 +12,8 @@
 /* Vollbreite-Reihe: Text & Bild sind zwei separaten Felder ohne sichtbare Fuge */
 .cards .media-row{
   grid-column: 1 / -1;
-  display: grid;
   grid-template-columns: 1fr 1fr; /* Text | Bild */
   gap: 0;                         /* kein Zwischenraum */
-  align-items: center;            /* Mittelpunkte ausrichten */
   position: relative;             /* für gemeinsamen Shadow */
 }
 
