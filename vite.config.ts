@@ -1,21 +1,34 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve, join, relative } from 'path';
+import { readdirSync } from 'fs';
+
+function getHtmlEntries() {
+  const entries: Record<string, string> = {
+    home: resolve(__dirname, 'index.html')
+  };
+  const pagesRoot = join(__dirname, 'pages');
+
+  function walk(dir: string) {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (entry.isFile() && entry.name === 'index.html') {
+        const segments = relative(pagesRoot, fullPath).split('/');
+        const key = segments[segments.length - 2];
+        entries[key] = fullPath;
+      }
+    }
+  }
+
+  walk(pagesRoot);
+  return entries;
+}
 
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: {
-        home: resolve(__dirname, 'index.html'),
-        team: resolve(__dirname, 'pages/team/index.html'),
-        lore: resolve(__dirname, 'pages/lore-and-fate/index.html'),
-        toolkit: resolve(__dirname, 'pages/toolkit/index.html'),
-        merch: resolve(__dirname, 'pages/merch/index.html'),
-        contact: resolve(__dirname, 'pages/contact/index.html'),
-        imprint: resolve(__dirname, 'pages/legal/imprint/index.html'),
-        impressum: resolve(__dirname, 'pages/legal/impressum/index.html'),
-        privacy: resolve(__dirname, 'pages/legal/privacy-policy/index.html'),
-        cookies: resolve(__dirname, 'pages/legal/cookie-settings/index.html')
-      }
+      input: getHtmlEntries()
     }
   }
 });

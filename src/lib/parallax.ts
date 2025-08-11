@@ -1,5 +1,5 @@
 // Firewatch-ähnlicher Multi-Layer-Parallax mit rAF, Depth, Fog & Sun
-type Options = {
+export type Options = {
   heroSelector?: string;       // Section mit den Parallax-Layern
   maxShiftPx?: number;         // wie weit die nahen Layer vertikal wandern
   maxScale?: number;           // wie stark nahe Layer skalieren
@@ -8,84 +8,86 @@ type Options = {
 
 const clamp = (v: number, min = 0, max = 1) => Math.max(min, Math.min(max, v));
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-export function initParallax(opts: Options = {}) {
-  const {
-    heroSelector = '.hero',
-    maxShiftPx = 120,
-    maxScale = 1.08,
-    ease = easeOutCubic
-  } = opts;
+export class Parallax {
+  private layers: HTMLElement[];
+  private sun?: HTMLElement;
+  private fog?: HTMLElement;
+  private heroTop = 0;
+  private heroHeight = 1;
+  private ticking = false;
 
-  // Respektiere Bewegungs-Reduktion
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) return;
+  constructor(private hero: HTMLElement, private opts: Required<Options>) {
+    this.layers = Array.from(hero.querySelectorAll<HTMLElement>('[data-depth]'));
+    this.sun = hero.querySelector<HTMLElement>('[data-sun]') || undefined;
+    this.fog = hero.querySelector<HTMLElement>('[data-fog]') || undefined;
 
-  const hero = document.querySelector<HTMLElement>(heroSelector);
-  if (!hero) return;
+    this.onScroll = this.onScroll.bind(this);
+    this.onResize = this.onResize.bind(this);
 
-  const layers = Array.from(hero.querySelectorAll<HTMLElement>('[data-depth]'));
-  const sun = hero.querySelector<HTMLElement>('[data-sun]');
-  const fog = hero.querySelector<HTMLElement>('[data-fog]');
+    this.measure();
+    this.update();
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+  }
 
-  let heroTop = 0;
-  let heroHeight = 1;
+  private measure() {
+    const rect = this.hero.getBoundingClientRect();
+    this.heroTop = window.scrollY + rect.top;
+    this.heroHeight = Math.max(this.hero.offsetHeight, window.innerHeight * 0.6);
+  }
 
-  const measure = () => {
-    const rect = hero.getBoundingClientRect();
-    // offset relativ zum Dokument-Top:
-    heroTop = window.scrollY + rect.top;
-    heroHeight = Math.max(hero.offsetHeight, window.innerHeight * 0.6);
-  };
+  private update() {
+    this.ticking = false;
+    const y = window.scrollY - this.heroTop;
+    const progress = clamp(y / this.heroHeight, 0, 1);
+    const t = this.opts.ease(progress);
 
-  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const y = window.scrollY - heroTop;
-    // scrollFortschritt nur über dem Hero messen
-    const progress = clamp(y / heroHeight, 0, 1);
-    const t = ease(progress);
-
-    // Layers: near (depth≈1) bewegt mehr, far (depth≈0.1) nur wenig
-    for (const el of layers) {
-      const d = parseFloat(el.dataset.depth || '0.5'); // 0.05..1
-      const shift = -maxShiftPx * d * t;               // nach oben
-      const sc = lerp(1, lerp(1, maxScale, d), t);     // nahe Layer skalieren mehr
+    for (const el of this.layers) {
+      const d = parseFloat(el.dataset.depth || '0.5');
+      const shift = -this.opts.maxShiftPx * d * t;
+      const sc = lerp(1, lerp(1, this.opts.maxScale, d), t);
       el.style.transform = `translate3d(0, ${shift}px, 0) scale(${sc})`;
       el.style.willChange = 'transform';
     }
 
-    // Sonne: leicht hoch und minimal nach rechts
-    if (sun) {
+    if (this.sun) {
       const sx = lerp(0, 24, t);
       const sy = lerp(0, -36, t);
       const sScale = lerp(1, 0.98, t);
-      sun.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${sScale})`;
+      this.sun.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${sScale})`;
     }
 
-    // Dunst/Fog: blende stärker ein je weiter gescrollt
-    if (fog) {
+    if (this.fog) {
       const op = clamp(lerp(0, 0.8, t));
-      fog.style.opacity = String(op);
+      this.fog.style.opacity = String(op);
     }
-  };
+  }
 
-  const onScroll = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
+  private onScroll() {
+    if (!this.ticking) {
+      this.ticking = true;
+      requestAnimationFrame(() => this.update());
     }
-  };
+  }
 
-  const onResize = () => {
-    measure();
-    update();
-  };
+  private onResize() {
+    this.measure();
+    this.update();
+  }
 
-  measure();
-  update();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onResize);
+  destroy() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+  }
+}
+
+export function initParallax(opts: Options = {}) {
+  const { heroSelector = '.hero', maxShiftPx = 120, maxScale = 1.08, ease = easeOutCubic } = opts;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+  const hero = document.querySelector<HTMLElement>(heroSelector);
+  if (!hero) return;
+  return new Parallax(hero, { heroSelector, maxShiftPx, maxScale, ease });
 }
