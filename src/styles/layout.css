@@ -1,3 +1,4 @@
+@import "./breakpoints.css";
 /* Header + Hero */
 
 /* Header-Grundlayout + sticky Verhalten */
@@ -39,8 +40,8 @@
 .grid{
   display:grid; grid-template-columns:1.25fr 1fr; gap:32px;
 }
-@media (max-width:1199px){ .grid{grid-template-columns:1fr 1fr}}
-@media (max-width:899px){ .grid{grid-template-columns:1fr; gap:24px} }
+@media (max-width: var(--bp-tablet)){ .grid{grid-template-columns:1fr 1fr}}
+@media (max-width: var(--bp-mobile)){ .grid{grid-template-columns:1fr; gap:24px} }
 
 .card{padding:24px 28px}
 .card.cream{background:var(--card-cream); color:#1a1408}
@@ -129,7 +130,7 @@
 
 /* Performance-Hinweise */
 .hero .layer{ will-change: transform; transform-origin: center bottom; }
-@media (max-width: 899px){
+@media (max-width: var(--bp-mobile)){
   .hero{ min-height: 56vh; }
   .hero .sun{ width: 180px; height: 180px; top: 24%; }
 }

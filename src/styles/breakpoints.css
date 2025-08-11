@@ -1,0 +1,7 @@
+:root {
+  /* Tablet breakpoint: grid becomes two columns */
+  --bp-tablet: 1199px;
+
+  /* Mobile breakpoint: single-column layout and hero adjustments */
+  --bp-mobile: 899px;
+}
