@@ -2,7 +2,7 @@
 export type Options = {
   heroSelector?: string;       // Section mit den Parallax-Layern
   maxShiftPx?: number;         // wie weit die nahen Layer vertikal wandern
-  maxScale?: number;           // wie stark nahe Layer skalieren
+  maxScale?: number;           // wie stark nahe Layer skalieren (nur .layer)
   ease?: (t: number) => number;
 };
 
@@ -11,7 +11,7 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export class Parallax {
-  private layers: HTMLElement[];
+  private nodes: HTMLElement[];   // alle [data-depth] außer [data-fixed]
   private sun?: HTMLElement;
   private fog?: HTMLElement;
   private heroTop = 0;
@@ -19,9 +19,16 @@ export class Parallax {
   private ticking = false;
 
   constructor(private hero: HTMLElement, private opts: Required<Options>) {
-    this.layers = Array.from(hero.querySelectorAll<HTMLElement>('[data-depth]'));
+    // Zielknoten: alles mit data-depth, aber NICHT data-fixed
+    this.nodes = Array.from(
+      hero.querySelectorAll<HTMLElement>('[data-depth]:not([data-fixed])')
+    );
     this.sun = hero.querySelector<HTMLElement>('[data-sun]') || undefined;
     this.fog = hero.querySelector<HTMLElement>('[data-fog]') || undefined;
+
+    // Sicherheits-Cleanup: alte Inline-Transforms im Hero entfernen
+    hero.querySelectorAll<HTMLElement>('.layer, [data-depth], [data-sun], [data-fog]')
+        .forEach(el => { el.style.transform = ''; el.style.willChange = ''; });
 
     this.onScroll = this.onScroll.bind(this);
     this.onResize = this.onResize.bind(this);
@@ -44,14 +51,23 @@ export class Parallax {
     const progress = clamp(y / this.heroHeight, 0, 1);
     const t = this.opts.ease(progress);
 
-    for (const el of this.layers) {
+    for (const el of this.nodes) {
       const d = parseFloat(el.dataset.depth || '0.5');
-      const shift = -this.opts.maxShiftPx * d * t;
-      const sc = lerp(1, lerp(1, this.opts.maxScale, d), t);
-      el.style.transform = `translate3d(0, ${shift}px, 0) scale(${sc})`;
-      el.style.willChange = 'transform';
+      const shift = this.opts.maxShiftPx * d * t;
+
+      if (el.classList.contains('layer')) {
+        // Nur Grafik-Layer skalieren
+        const sc = lerp(1, lerp(1, this.opts.maxScale, d), t);
+        el.style.transform = `translate3d(0, ${shift}px, 0) scale(${sc})`;
+        el.style.willChange = 'transform';
+      } else {
+        // Text/Overlay: nur verschieben
+        el.style.transform = `translate3d(0, ${shift}px, 0)`;
+        el.style.willChange = 'transform';
+      }
     }
 
+    // Sonne sanft bewegen
     if (this.sun) {
       const sx = lerp(0, 24, t);
       const sy = lerp(0, -36, t);
@@ -59,6 +75,7 @@ export class Parallax {
       this.sun.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${sScale})`;
     }
 
+    // Nebel einblenden
     if (this.fog) {
       const op = clamp(lerp(0, 0.8, t));
       this.fog.style.opacity = String(op);
