@@ -8,7 +8,10 @@
   z-index: 100;
 }
 
-.site-header .container { display: flex; justify-content: space-between; }
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+}
 
 .site-header.is-stuck {
   background: rgb(11 9 17 / 92%);
@@ -16,20 +19,37 @@
   box-shadow: 0 10px 30px rgb(0 0 0 / 35%);
 }
 
-.logo a { color: inherit; text-decoration: none; }
-:where(.logo a:hover) { filter: brightness(1.08); }
-.logo { font-weight: 700; letter-spacing: 0.06em; }
-.logo img { display: block; height: clamp(48px, 8vw, 96px); width: auto; }
+.logo a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.main-nav a { font-size: 22px; margin-left: 24px; }
+:where(.logo a:hover) { filter: brightness(1.08); }
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.logo img {
+  display: block;
+  height: clamp(48px, 8vw, 96px);
+  width: auto;
+}
+
+.main-nav a {
+  font-size: 22px;
+  margin-left: 24px;
+}
+
 .site-footer a { opacity: 0.9; }
 .main-nav a:hover { text-decoration: underline; }
 
 /* === Parallax Hero === */
 
 .hero {
-  isolation: isolate;
   height: 80vh;
+  isolation: isolate;
   overflow: hidden;
   position: relative;
 }
@@ -43,6 +63,7 @@
 }
 
 /* Himmel */
+
 .hero .sky {
   background:
     linear-gradient(
@@ -57,10 +78,12 @@
 }
 
 /* >>> WICHTIG: Layer füllen die Höhe und kacheln horizontal bis an die Ränder */
+
 .hero .mountains-far,
 .hero .mountains-mid,
-.hero .trees-near{
+.hero .trees-near {
   background-position: bottom center;
+
   /* background-repeat: repeat-x;   /* vorher: no-repeat */
   background-repeat: no-repeat;   /* vorher: no-repeat */
   background-size: 100% 100%;    /* Höhe füllen, Breite ergibt sich → repeat-x deckt Ränder */
@@ -70,17 +93,20 @@
   background-image: url("/images/hero/layer_1.png");
   z-index: 3;
 }
+
 .hero .mountains-mid {
   background-image: url("/images/hero/layer_2.png");
   opacity: 0.95;
   z-index: 4;
 }
+
 .hero .trees-near {
   background-image: url("/images/hero/layer_3.png");
   z-index: 5;
 }
 
 /* Dunst */
+
 .hero .fog {
   background:
     radial-gradient(120% 70% at 50% 10%, rgb(255 255 255 / 18%) 0%, rgb(255 255 255 / 6%) 55%, rgb(255 255 255 / 0%) 70%),
@@ -91,22 +117,24 @@
 }
 
 /* Overlay-Text */
+
 .hero-overlay {
-  position: absolute;
-  inset: 0;
   display: grid;
+  inset: 0;
   place-items: center;
-  z-index: 8;
   pointer-events: none;
+  position: absolute;
+  z-index: 8;
 }
+
 .hero-title {
-  margin: 0;
-  letter-spacing: .25em;
-  font-weight: 800;
-  text-align: center;
-  font-size: clamp(28px, 6vw, 80px);
-  will-change: transform;
   backface-visibility: hidden;
+  font-size: clamp(28px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  margin: 0;
+  text-align: center;
+  will-change: transform;
 }
 
 /* Content Grid */
@@ -150,7 +178,6 @@
   box-shadow: 0 16px 40px rgb(0 0 0 / 40%);
   transform: translateY(-2px);
 }
-
 
 /* Footer */
 
@@ -236,7 +263,8 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .hero .layer, .hero-title { transform: none !important; }
+  .hero .layer,
+  .hero-title { transform: none !important; }
   .hero .fog { opacity: 0.25; }
 }
 
@@ -247,7 +275,10 @@
 }
 
 @media (width <= 640px) {
-  .grid { gap: 24px; grid-template-columns: 1fr; }
+  .grid {
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
   .hero { min-height: 56vh; }
 }
 
