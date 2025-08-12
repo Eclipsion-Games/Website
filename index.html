@@ -3,70 +3,75 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Eclipsion Games – Home</title>
+  <title>Eclipsion Games - Home</title>
 </head>
 <body>
-  <!-- Parallax-Hero -->
+  <!-- Neuer Parallax-Hero -->
   <section class="hero" id="hero">
     <!-- Reihenfolge/Z-Index: Himmel (hinten) → Sonne → Berge → Bäume → Vordergrund → Dunst -->
-    <div class="layer sky" data-depth="0.05"></div>
-    <div class="sun" data-sun></div>
     <div class="layer mountains-far" data-depth="0.15"></div>
     <div class="layer mountains-mid" data-depth="0.35"></div>
-    <div class="layer trees-near" data-depth="0.70"></div>
-    <div class="layer foreground" data-depth="1.00"></div>
+
+    <!-- Layer 3: FIXIERT (kein Parallax) -->
+    <div class="layer trees-near" data-depth="0.70" data-fixed></div>
+
     <div class="fog" data-fog></div>
+
+    <!-- Text-Overlay im Hero (parallax, ohne Scale) -->
+    <div class="hero-overlay" aria-hidden="true">
+      <h1 class="hero-title" data-depth="0.25">ECLIPSION</h1>
+    </div>
   </section>
 
-  <!-- Header/Navi STARTET direkt unter dem Hero und wird sticky -->
-    <div id="site-header"></div>
+  <!-- Header/Navi startet direkt unter dem Hero und bleibt sticky -->
+  <div id="site-header"></div>
 
-      <main>
-        <section class="layout cards u-grid u-items-start">
+  <main>
+    <section class="layout cards u-grid u-items-start">
 
-          <!-- Vollbreit: Text links, Bild rechts (nahtlos aneinander) -->
-          <div class="media-row u-grid u-items-center">
-            <div class="panel text">
-              <h3>Get to know us</h3>
-              <p>Erfahre mehr über unser Team und unsere Mission.</p>
-            </div>
-            <div class="panel image">
-              <img src="/public/images/teamfoto.jpg" alt="Teamfoto">
-            </div>
-          </div>
+      <!-- Vollbreit: Text links, Bild rechts -->
+      <div class="media-row u-grid u-items-center">
+        <div class="panel text">
+          <h3>Get to know us</h3>
+          <p>Erfahre mehr über unser Team und unsere Mission.</p>
+        </div>
+        <div class="panel image">
+          <img src="/public/images/teamfoto.jpg" alt="Teamfoto">
+        </div>
+      </div>
 
-          <!-- Halbe Breite: Bild + Caption -->
-          <figure class="tile figure">
-            <img src="/public/images/lore-and-fate.jpg" alt="Lore &amp; Fate">
-            <figcaption>
-              <h4>Lore &amp; Fate</h4>
-              <p>Entdecke die Welt und Geschichte von Lore &amp; Fate.</p>
-            </figcaption>
-          </figure>
+      <!-- Halbe Breite: Bild + Caption -->
+      <figure class="tile figure">
+        <img src="/public/images/lore-and-fate.jpg" alt="Lore &amp; Fate">
+        <figcaption>
+          <h4>Lore &amp; Fate</h4>
+          <p>Entdecke die Welt und Geschichte von Lore &amp; Fate.</p>
+        </figcaption>
+      </figure>
 
-          <figure class="tile figure">
-            <img src="/public/images/toolkit.jpg" alt="Toolkit">
-            <figcaption>
-              <h4>Toolkit</h4>
-              <p>Unser Toolkit für kreative Abenteuer.</p>
-            </figcaption>
-          </figure>
+      <figure class="tile figure">
+        <img src="/public/images/toolkit.jpg" alt="Toolkit">
+        <figcaption>
+          <h4>Toolkit</h4>
+          <p>Unser Toolkit für kreative Abenteuer.</p>
+        </figcaption>
+      </figure>
 
-          <!-- Vollbreit: Bild links, Text rechts -->
-          <div class="media-row reverse u-grid u-items-center">
-            <div class="panel image">
-              <img src="/public/images/merch.jpg" alt="Merch Foto">
-            </div>
-            <div class="panel text">
-              <h3>Merch</h3>
-              <p>Exklusive Fanartikel für dich.</p>
-            </div>
-          </div>
+      <!-- Vollbreit: Bild links, Text rechts -->
+      <div class="media-row reverse u-grid u-items-center">
+        <div class="panel image">
+          <img src="/public/images/merch.jpg" alt="Merch Foto">
+        </div>
+        <div class="panel text">
+          <h3>Merch</h3>
+          <p>Exklusive Fanartikel für dich.</p>
+        </div>
+      </div>
 
-        </section>
-      </main>
+    </section>
+  </main>
 
-    <div id="site-footer"></div>
-    <script type="module" src="/src/pages/home.ts"></script>
-  </body>
-  </html>
+  <div id="site-footer"></div>
+  <script type="module" src="/src/pages/home.ts"></script>
+</body>
+</html>
