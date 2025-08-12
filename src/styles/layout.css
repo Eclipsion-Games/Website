@@ -176,76 +176,30 @@
   z-index: 2;
 }
 
-/* Silhouetten: statt Bilder nutzen wir clip-path-Formen  */
+/* Silhouetten-Ebenen */
 
 .hero .mountains-far {
-  background: linear-gradient(180deg, #f3d9a3, #d9a96b);
-  clip-path:
-    polygon(
-      0% 75%,
-      6% 72%,
-      14% 78%,
-      22% 68%,
-      32% 74%,
-      42% 66%,
-      55% 72%,
-      68% 64%,
-      80% 70%,
-      90% 66%,
-      100% 68%,
-      100% 100%,
-      0% 100%
-    );
+  background-image: url("/images/hero/Ebene_1.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: 3;
 }
 
 .hero .mountains-mid {
-  background: linear-gradient(180deg, #d8a75e, #c17a3a);
-  clip-path:
-    polygon(
-      0% 78%,
-      8% 70%,
-      18% 82%,
-      28% 68%,
-      40% 80%,
-      52% 66%,
-      66% 78%,
-      80% 64%,
-      92% 74%,
-      100% 70%,
-      100% 100%,
-      0% 100%
-    );
+  background-image: url("/images/hero/Ebene_2.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
   opacity: 0.95;
   z-index: 4;
 }
 
 .hero .trees-near {
-  background: var(--fg-silhouette);
-
-  /* grob gezahnte Baumlinie */
-  clip-path:
-    polygon(
-      0 78%,
-      5% 84%,
-      8% 80%,
-      14% 86%,
-      18% 80%,
-      24% 88%,
-      30% 80%,
-      38% 90%,
-      46% 82%,
-      52% 90%,
-      60% 82%,
-      66% 88%,
-      74% 82%,
-      82% 90%,
-      90% 84%,
-      96% 88%,
-      100% 82%,
-      100% 100%,
-      0 100%
-    );
+  background-image: url("/images/hero/Ebene_3.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: 5;
 }
 
