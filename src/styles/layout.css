@@ -179,7 +179,7 @@
 /* Silhouetten-Ebenen */
 
 .hero .mountains-far {
-  background-image: url("/images/hero/Ebene_1.png");
+  background-image: url("/images/hero/Layer_1.png");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -187,7 +187,7 @@
 }
 
 .hero .mountains-mid {
-  background-image: url("/images/hero/Ebene_2.png");
+  background-image: url("/images/hero/Layer_2.png");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -196,7 +196,7 @@
 }
 
 .hero .trees-near {
-  background-image: url("/images/hero/Ebene_3.png");
+  background-image: url("/images/hero/Layer_3.png");
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
