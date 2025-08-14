@@ -22,7 +22,13 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
 body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
   background: linear-gradient(#210905, #261f44);
   color: var(--text);
   font: 400 16px/1.6 "Cormorant Garamond", serif;
