@@ -13,7 +13,6 @@
 }
 
 .site-header.is-stuck {
-  background: rgb(11 9 17 / 92%);
   border-bottom-color: rgb(255 255 255 / 8%);
   box-shadow: 0 10px 30px rgb(0 0 0 / 35%);
 }
